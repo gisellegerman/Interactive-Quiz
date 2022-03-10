@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Which Kardashian...</title>
+<style>
+body {
+background-color: #c4bdac;
+font-family: Helvetica;
+}
+
+#main {
+width: 80%;
+border: 1px gray solid;
+margin: auto;
+padding: 10px;
+background-color: #EFEEEE;
+border-radius: 10px;
+}
+
+#header {
+margin-top: 0;
+border: 2px solid black;
+padding: 5px;
+height: 100px;
+background-color: #E8E6D9;
+}
+
+#response {
+    display: none;
+}
+
+label {
+width: 150px;
+display: inline-block;
+}
+
+button {
+display: block;
+margin-top: 20px;
+
+}
+
+.img_space {
+  padding-right: 3px;
+}
+
+img {
+  max-width: 100%;
+}
+
+input[name=imagepick] {
+  display: none;
+}
+
+input[name=imagepick2] {
+  display: none;
+}
+
+input:checked + label img {
+  border:2px solid #c4bdac;
+}
+
+
+</style>
+</head>
+<body>
+<div id="main">
+<div id="header">
+  <h1>Which Kardashian are you?</h1>
+</div>
+
+<form  id="form1">
+<p>What is your go to lunch?</p>
+<input name="imagepick2" value="kim" type="radio" id="salad">
+<label for="salad">
+  <img src="salad.jpg">
+</label>
+
+<input name="imagepick2" value="kylie" type="radio" id="burger">
+<label for="burger">
+  <img src="burger.jpg">
+</label>
+
+<input name="imagepick2" value="khloe" type="radio" id="steak">
+<label for="steak">
+  <img src="steak.jpg">
+</label>
+
+<input name="imagepick2" value="kourtney"  type="radio" id="cafe">
+<label for="cafe">
+  <img src="cafe.jpg">
+</label>
+
+<input name="imagepick2" value="kendall"  type="radio" id="pizza">
+<label for="pizza">
+  <img src="pizza.jpg">
+</label>
+
+<p>How would you describe your style?</p>
+<label><input type="radio" name="style1" id="tight" value="kim" />Anything tight</label>
+<label><input type="radio" name="style1" id="dress" value="kylie" />Always dressed up</label>
+<label><input type="radio" name="style1" id="black" value="kourtney" />Off duty biker</label>
+<label><input type="radio" name="style1" id="casual" value="kendall" />Jeans and a T-shirt</label>
+<label><input type="radio" name="style1" id="none" value="khloe" />Style? I have none.</label>
+
+
+<p>On a night with no plans, how do you spend your evening?</p>
+<label><input type="radio" name="night" id="stay" value="kourtney" />Stay in</label>
+<label><input type="radio" name="night" id="dinner" value="kim" />Go to dinner with friends</label>
+<label><input type="radio"  name="night" id="town" value="kendall" />Hit the town</label>
+<label><input type="radio"  name="night" id="workout" value="khloe" />Get one more workout in</label>
+<label><input type="radio"  name="night" id="none" value="kylie" />Freetime? I wish.</label>
+
+<p> What is your dream vacation?</p>
+    <input name="imagepick" value="kim" type="radio" id="bahamas">
+    <label for="bahamas">
+      <img src="bahamas.jpg">
+      <p class="img_space">Sip a drink by the pool in the Bahamas</p>
+    </label>
+
+
+    <input name="imagepick" value="khloe" type="radio" id="montana">
+    <label for="montana">
+      <img src="montana.jpg">
+      <p class="img_space">Explore the great outdoors in Montana</p>
+    </label>
+
+    <input name="imagepick" value="kendall" type="radio" id="paris">
+    <label for="paris">
+      <img src="paris.jpg">
+      <p class="img_space">Go on a shopping spree in Paris</p>
+    </label>
+
+    <input name="imagepick" value="kourtney"  type="radio" id="nyc">
+    <label for="nyc">
+      <img src="nyc.jpg">
+      <p class="img_space" >A Weekend getaway to New York City</p>
+    </label>
+
+    <input name="imagepick" value="kylie"  type="radio" id="tulum">
+    <label for="tulum">
+      <img src="tulum.jpg">
+      <p class="img_space">Chill by the beach in Tulum</p>
+    </label>
+
+<p>What is your dream job?</p>
+<label><input type="radio" name="job" id="model" value="kendall" />Model</label>
+<label><input type="radio" name="job" id="business" value="khloe" />Business Mogul</label>
+<label><input type="radio" name="job" id="lawyer" value="kim" />Lawyer</label>
+<label><input type="radio" name="job" id="influencer" value="kylie" />Influencer</label>
+<label><input type="radio" name="job" id="pick" value="kourtney" />Do I have to pick a job?</label>
+
+
+
+<button type="submit" value="Submit">Submit</button>
+</form>
+
+<p id="response">You are <span id="answer"></span></p>
+
+
+</div>
+<script>
+
+
+	document.getElementById("form1").onsubmit=function() {
+  document.getElementById("response").style.display = "block";
+    document.getElementById("answer").innerHTML = "";
+
+    imagepick2 = document.querySelector('input[name = "imagepick2"]:checked').value;
+	  style1 = document.querySelector('input[name = "style1"]:checked').value;
+    night = document.querySelector('input[name = "night"]:checked').value;
+	  imagepick = document.querySelector('input[name = "imagepick"]:checked').value;
+    job = document.querySelector('input[name = "job"]:checked').value;
+
+	  // initialize score variables
+	  kim = 0;
+	  kourtney = 0;
+	  khloe = 0;
+    kylie = 0;
+    kendall = 0;
+
+	  //function to calculate score for each question
+	  function eachscore(x){
+	  if(x == "kim") { kim = kim + 1}
+	  if(x == "kourtney") { kourtney = kourtney + 1}
+	  if(x == "khloe") { khloe = khloe + 1}
+    if(x == "kylie") { kylie = kylie + 1}
+    if(x == "kendall") { kendall = kendall + 1}
+	  }
+	  // for the above function, you could also change the 1 to a variable so you could give more points for certain questions
+
+	  //call function for each question
+	  eachscore(eval("imagepick2"));
+	  eachscore(eval("style1"));
+	  eachscore(eval("night"));
+    eachscore(eval("imagepick"));
+    eachscore(eval("job"));
+
+
+
+	  all = [kim,kourtney,khloe,kylie,kendall];
+
+	//get the max score  in the array
+  maxscore = Math.max.apply(Math,all);
+
+    // object holding scores and feedback
+    scores = [{index:0, feedback: "Kim! Everyone considers you the boss. You aren't afraid to tell people how you feel...Even if they don't like it.<br /><img src='kim.jpg' width='300'/>"},
+    {index:1, feedback: "Kourtney! You are living your best life right now and on a journey to find yourself.<br /><img src='kourtney.jpg' width='300'/>"},
+    {index:2, feedback: "Khloe! You are down for any business opportunity and you are ready to forge your own path.<br /><img src='khloe.jpg' width='300'/>"},
+    {index:3, feedback: "Kylie! You are the baby of the group but on the outside you are the most mature.<br /><img src='kylie.jpg' width='300'/>"},
+    {index:4, feedback: "Kendall! You are laid back but you are always on the go. Take some time to yourself!<br /><img src='kendall.jpg' width='300'/>"}];
+
+
+	for(i=0; i<all.length; i++) {
+	if(all[i]==maxscore) {
+
+    document.getElementById("answer").innerHTML = scores[i].feedback;
+
+	}
+	}
+
+return false;
+	   }
+
+
+</script>
+
+
+
+</body>
+</html>
